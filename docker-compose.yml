@@ -40,7 +40,13 @@ services:
       - ${MYSQL_LOCAL_HOME}:/var/lib/mysql
     command:
       - '--default-authentication-plugin=mysql_native_password'
-
+  redis:
+      image: 'redis:alpine'
+      ports:
+        - '6379:6379'
+      restart: always
+      expose:
+        - '6379'
   nginx:
     # default ports 80, 443 - expose mapping as needed to host
     image: nginx:latest
