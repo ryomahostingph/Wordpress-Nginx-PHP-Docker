@@ -7,7 +7,7 @@ services:
     container_name: wp-wordpress
     env_file:
       - .env
-    restart: unless-stopped
+    restart: always
     networks:
       - wordpress
     depends_on:
@@ -28,7 +28,7 @@ services:
     container_name: wp-database
     env_file:
       - .env
-    restart: unless-stopped
+    restart: always
     networks:
       - wordpress
     environment:
@@ -53,7 +53,7 @@ services:
     container_name: wp-nginx
     env_file:
       - .env
-    restart: unless-stopped
+    restart: always
     networks:
       - wordpress
     depends_on:
@@ -64,7 +64,7 @@ services:
     volumes:
       - ${WORDPRESS_LOCAL_HOME}:/var/www/html
       - ${NGINX_CONF}:/etc/nginx/conf.d/default.conf
-      - ${NGINX_SSL_CERTS}:/etc/ssl:ro
+#      - ${NGINX_SSL_CERTS}:/etc/ssl:ro
       - ${NGINX_LOGS}:/var/log/nginx
 
   # adminer - bring up only as needed - bypasses nginx
